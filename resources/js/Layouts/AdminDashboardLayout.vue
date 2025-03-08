@@ -5,25 +5,23 @@ import { Link } from '@inertiajs/vue3';
 import AdminHeader from "@/Layouts/AdminHeader.vue";
 import AdminFooter from "@/Layouts/AdminFooter.vue";
 
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import GridMenu from '@/Components/GridMenu.vue';
-import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
-
-const showingNavigationDropdown = ref(false);
-
-const isHeaderCenterVisible = ref(true);
-
-const toggleHeaderCenter = () => {
-  isHeaderCenterVisible.value = !isHeaderCenterVisible.value;
-};
 </script>
 
 <template>
+  <div class="w-full h-auto min-h-full overflow-x-hidden overflow-y-auto bg-transparent relative">
+    <AdminHeader />
 
+    <main class="relative w-full min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50 px-5">
+      <header v-if="$slots.header" class="p-6 text-slate-700 dark:text-slate-100">
+        <slot name="header" />
+      </header>
+      <div class="w-full">
+        <slot />
+      </div>
+    </main>
+    
+    <AdminFooter />
+  </div>
 </template>
 
 <style scoped>
