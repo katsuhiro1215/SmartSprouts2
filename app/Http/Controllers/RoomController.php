@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRoomRequest;
-use App\Http\Requests\UpdateRoomRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RoomRequest;
 use App\Models\Room;
 
 class RoomController extends Controller

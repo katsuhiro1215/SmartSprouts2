@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ProductBrand extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

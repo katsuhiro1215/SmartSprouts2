@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship
+    public function productSubCategories()
+    {
+        return $this->hasMany(ProductSubCategory::class);
+    }
 }

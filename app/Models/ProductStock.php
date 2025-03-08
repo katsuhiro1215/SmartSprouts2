@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ProductStock extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship
+    public function productVariant()
+    {
+        return $this->belongsTo(ProductVariant::class);
+    }
 }

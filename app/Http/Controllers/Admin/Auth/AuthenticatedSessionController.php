@@ -16,10 +16,7 @@ class AuthenticatedSessionController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render('Admin/Auth/Login', [
-            'canResetPassword' => Route::has('admin.password.request'),
-            'status' => session('status'),
-        ]);
+        return Inertia::render('Admin/Auth/Login');
     }
 
     public function store(LoginRequest $request): RedirectResponse
@@ -28,7 +25,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+        return redirect()->intended(RouteServiceProvider::ADMIN_HOME)->with([
+            'message' => 'ログインしました',
+            'status' => 'success',
+        ]);
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -39,6 +39,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/admin/login')->with([
+            'message' => 'ログアウトしました',
+            'status' => 'success',
+        ]);
     }
 }

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class StudentEnrollmentGoal extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

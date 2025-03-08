@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class AdminEnrollment extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

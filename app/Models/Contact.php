@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
+    protected $table = 'contacts';
+
+    protected $fillable = [
+
+    ];
+
+    // Relationship
+    public function contactReply()
+    {
+        return $this->hasOne(ContactReply::class);
+    }
 }
