@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Questionnaire;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class QuestionnaryFactory extends Factory
 {
+    protected $model = Questionnaire::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,13 @@ class QuestionnaryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            'status' => $this->faker->randomElement(['draft', 'review', 'published', 'paused', 'archived']),
+            'publish_at' => $this->faker->dateTime(),
+            'unpublish_at' => $this->faker->dateTime(),
+            'created_by' => 1,
+            'updated_by' => 1,
         ];
     }
 }
