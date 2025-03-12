@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->string('username', 30)->comment('ユーザー名');
+            $table->string('email')->unique()->comment('メールアドレス');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('role', 20)->comment('Owner', 'SuperAdmin, Admin, SubAdmin, Manager, Employee', 'Instructor');
+            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
