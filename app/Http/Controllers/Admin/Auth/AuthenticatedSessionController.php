@@ -28,7 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+        return redirect()->intended(RouteServiceProvider::ADMIN_HOME)->with([
+            'message' => 'ログインしました',
+            'status' => 'success',
+        ]);
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -39,6 +42,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/admin/login')->with([
+            'message' => 'ログアウトしました',
+            'status' => 'success',
+        ]);
     }
 }

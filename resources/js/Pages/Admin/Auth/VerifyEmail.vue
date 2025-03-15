@@ -1,17 +1,22 @@
 <script setup>
-import { computed } from 'vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { computed } from 'vue';
+// Layouts
+import AdminAuthLayout from '@/Layouts/AdminAuthLayout.vue';
+// Components
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
+// Props
 const props = defineProps({
     status: {
         type: String,
     },
 });
 
+// Form
 const form = useForm({});
 
+// フォームの送信
 const submit = () => {
     form.post(route('verification.send'));
 };
@@ -20,7 +25,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 </script>
 
 <template>
-    <GuestLayout>
+    <AdminAuthLayout>
         <Head title="Email Verification" />
 
         <div class="mb-4 text-sm text-gray-600">
@@ -37,7 +42,6 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Resend Verification Email
                 </PrimaryButton>
-
                 <Link
                     :href="route('logout')"
                     method="post"
@@ -47,5 +51,5 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                 >
             </div>
         </form>
-    </GuestLayout>
+    </AdminAuthLayout>
 </template>

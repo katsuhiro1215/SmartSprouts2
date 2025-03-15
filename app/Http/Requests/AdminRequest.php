@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Admin;
+use Illuminate\Validation\Rules;
 
 class AdminRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class AdminRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,10 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'username' => ['required', 'string', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Admin::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'regex:/^(?=.*[a-zA-Z])(?=.*\d).{8,}$/',
         ];
     }
 }
